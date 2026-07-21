@@ -170,6 +170,7 @@ import de.svws_nrw.db.schema.tabellen.Tabelle_Notenmodul_Credentials;
 import de.svws_nrw.db.schema.tabellen.Tabelle_Notenmodul_Konfiguration_Client;
 import de.svws_nrw.db.schema.tabellen.Tabelle_Notenmodul_Konfiguration_Server;
 import de.svws_nrw.db.schema.tabellen.Tabelle_Notenmodul_Verbindungen;
+import de.svws_nrw.db.schema.tabellen.Tabelle_Schoolboost_Verbindungen;
 import de.svws_nrw.db.schema.tabellen.Tabelle_OrganisationsformenKatalog_Keys;
 import de.svws_nrw.db.schema.tabellen.Tabelle_PersonalTypen;
 import de.svws_nrw.db.schema.tabellen.Tabelle_Personengruppen;
@@ -696,6 +697,9 @@ public final class Schema {
 
 	/** Tabelle Notenmodul_Konfiguration_Server */
 	public static final Tabelle_Notenmodul_Konfiguration_Server tab_Notenmodul_Konfiguration_Server = add(new Tabelle_Notenmodul_Konfiguration_Server());
+
+	/** Tabelle Schoolboost_Verbindungen */
+	public static final Tabelle_Schoolboost_Verbindungen tab_Schoolboost_Verbindungen = add(new Tabelle_Schoolboost_Verbindungen());
 
 	/** Tabelle Schulformen */
 	public static final Tabelle_Schulformen tab_Schulformen = add(new Tabelle_Schulformen());

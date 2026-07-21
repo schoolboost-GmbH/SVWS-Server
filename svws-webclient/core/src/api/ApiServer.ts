@@ -170,6 +170,8 @@ import { Schild3KatalogEintragPruefungsordnung } from '../core/data/schild3/Schi
 import { Schild3KatalogEintragPruefungsordnungOption } from '../core/data/schild3/Schild3KatalogEintragPruefungsordnungOption';
 import { Schild3KatalogEintragUnicodeUmwandlung } from '../core/data/schild3/Schild3KatalogEintragUnicodeUmwandlung';
 import { Schild3KatalogEintragVersetzungsvermerke } from '../core/data/schild3/Schild3KatalogEintragVersetzungsvermerke';
+import { SchoolboostConnection } from '../core/data/schoolboost/SchoolboostConnection';
+import { SchoolboostPairRequest } from '../core/data/schoolboost/SchoolboostPairRequest';
 import { SchuelerBetrieb } from '../asd/data/schueler/SchuelerBetrieb';
 import { SchuelerEinwilligung } from '../core/data/schueler/SchuelerEinwilligung';
 import { SchuelerFoerderempfehlung } from '../asd/data/schueler/SchuelerFoerderempfehlung';
@@ -11619,6 +11621,161 @@ export class ApiServer extends BaseApi {
 		const ret = new ArrayList<Schild3KatalogEintragVersetzungsvermerke>();
 		obj.forEach((elem: any) => { const text : string = JSON.stringify(elem); ret.add(Schild3KatalogEintragVersetzungsvermerke.transpilerFromJSON(text)); });
 		return ret;
+	}
+
+
+	/**
+	 * Implementierung der GET-Methode getSchoolboostConnection für den Zugriff auf die URL https://{hostname}/db/{schema}/schoolboost/connection
+	 *
+	 * Gibt die Schoolboost-Verbindung zurück. Wurde noch keine Verbindung eingerichtet, so wird ein leeres Objekt mit der ID -1 zurückgegeben. Es wird geprüft, ob der SVWS-Benutzer die notwendige Berechtigung zum Verwalten der Schoolboost-Verbindung besitzt.
+	 *
+	 * Mögliche HTTP-Antworten:
+	 *   Code 200: Die Schoolboost-Verbindung
+	 *     - Mime-Type: application/json
+	 *     - Rückgabe-Typ: SchoolboostConnection
+	 *   Code 403: Der SVWS-Benutzer hat keine Rechte, um die Schoolboost-Verbindung zu verwalten.
+	 *
+	 * @param {string} schema - der Pfad-Parameter schema
+	 *
+	 * @returns Die Schoolboost-Verbindung
+	 */
+	public async getSchoolboostConnection(schema : string) : Promise<SchoolboostConnection> {
+		const path = "/db/{schema}/schoolboost/connection"
+			.replace(/{schema\s*(:[^{}]+({[^{}]+})*)?}/g, schema);
+		const result : string = await super.getJSON(path);
+		const text = result;
+		return SchoolboostConnection.transpilerFromJSON(text);
+	}
+
+
+	/**
+	 * Implementierung der PATCH-Methode patchSchoolboostConnection für den Zugriff auf die URL https://{hostname}/db/{schema}/schoolboost/connection
+	 *
+	 * Passt die Bezeichnung sowie die Synchronisations-Optionen der Schoolboost-Verbindung an. Es wird geprüft, ob der SVWS-Benutzer die notwendige Berechtigung zum Verwalten der Schoolboost-Verbindung besitzt.
+	 *
+	 * Mögliche HTTP-Antworten:
+	 *   Code 200: Die angepasste Schoolboost-Verbindung
+	 *     - Mime-Type: application/json
+	 *     - Rückgabe-Typ: SchoolboostConnection
+	 *   Code 403: Der SVWS-Benutzer hat keine Rechte, um die Schoolboost-Verbindung zu verwalten.
+	 *   Code 404: Es wurde noch keine Schoolboost-Verbindung eingerichtet.
+	 *
+	 * @param {Partial<SchoolboostConnection>} data - der Request-Body für die HTTP-Methode
+	 * @param {string} schema - der Pfad-Parameter schema
+	 *
+	 * @returns Die angepasste Schoolboost-Verbindung
+	 */
+	public async patchSchoolboostConnection(data : Partial<SchoolboostConnection>, schema : string) : Promise<SchoolboostConnection> {
+		const path = "/db/{schema}/schoolboost/connection"
+			.replace(/{schema\s*(:[^{}]+({[^{}]+})*)?}/g, schema);
+		const body : string = SchoolboostConnection.transpilerToJSONPatch(data);
+		const result : string = await super.patchJSONWithResponse(path, body);
+		const text = result;
+		return SchoolboostConnection.transpilerFromJSON(text);
+	}
+
+
+	/**
+	 * Implementierung der GET-Methode checkSchoolboostConnection für den Zugriff auf die URL https://{hostname}/db/{schema}/schoolboost/connection/check
+	 *
+	 * Prüft, ob der Schoolboost-Server mit den hinterlegten Verbindungsdaten erreichbar ist, indem ein neues Token angefordert wird. Es wird geprüft, ob der SVWS-Benutzer die notwendige Berechtigung zum Verwalten der Schoolboost-Verbindung besitzt.
+	 *
+	 * Mögliche HTTP-Antworten:
+	 *   Code 200: Das Ergebnis des Verbindungstests
+	 *     - Mime-Type: application/json
+	 *     - Rückgabe-Typ: SimpleOperationResponse
+	 *   Code 403: Der SVWS-Benutzer hat keine Rechte, um die Schoolboost-Verbindung zu verwalten.
+	 *   Code 404: Es wurde noch keine Schoolboost-Verbindung eingerichtet.
+	 *
+	 * @param {string} schema - der Pfad-Parameter schema
+	 *
+	 * @returns Das Ergebnis des Verbindungstests
+	 */
+	public async checkSchoolboostConnection(schema : string) : Promise<SimpleOperationResponse> {
+		const path = "/db/{schema}/schoolboost/connection/check"
+			.replace(/{schema\s*(:[^{}]+({[^{}]+})*)?}/g, schema);
+		const result : string = await super.getJSON(path);
+		const text = result;
+		return SimpleOperationResponse.transpilerFromJSON(text);
+	}
+
+
+	/**
+	 * Implementierung der POST-Methode disconnectSchoolboostConnection für den Zugriff auf die URL https://{hostname}/db/{schema}/schoolboost/connection/disconnect
+	 *
+	 * Verwirft den in der SVWS-Datenbank hinterlegten API-Key sowie ein ggf. vorhandenes Token. Die Schoolboost-URL und die Synchronisations-Optionen bleiben erhalten, sodass die Verbindung über einen neuen Pairing-Code wiederhergestellt werden kann. Es wird geprüft, ob der SVWS-Benutzer die notwendige Berechtigung zum Verwalten der Schoolboost-Verbindung besitzt.
+	 *
+	 * Mögliche HTTP-Antworten:
+	 *   Code 200: Die getrennte Schoolboost-Verbindung
+	 *     - Mime-Type: application/json
+	 *     - Rückgabe-Typ: SchoolboostConnection
+	 *   Code 403: Der SVWS-Benutzer hat keine Rechte, um die Schoolboost-Verbindung zu verwalten.
+	 *   Code 404: Es wurde noch keine Schoolboost-Verbindung eingerichtet.
+	 *
+	 * @param {string} schema - der Pfad-Parameter schema
+	 *
+	 * @returns Die getrennte Schoolboost-Verbindung
+	 */
+	public async disconnectSchoolboostConnection(schema : string) : Promise<SchoolboostConnection> {
+		const path = "/db/{schema}/schoolboost/connection/disconnect"
+			.replace(/{schema\s*(:[^{}]+({[^{}]+})*)?}/g, schema);
+		const result : string = await super.postJSON(path, null);
+		const text = result;
+		return SchoolboostConnection.transpilerFromJSON(text);
+	}
+
+
+	/**
+	 * Implementierung der POST-Methode pairSchoolboostConnection für den Zugriff auf die URL https://{hostname}/db/{schema}/schoolboost/connection/pair
+	 *
+	 * Tauscht den übergebenen Pairing-Code bei dem Schoolboost-Server gegen einen API-Key und hinterlegt diesen in der SVWS-Datenbank. Es wird geprüft, ob der SVWS-Benutzer die notwendige Berechtigung zum Verwalten der Schoolboost-Verbindung besitzt.
+	 *
+	 * Mögliche HTTP-Antworten:
+	 *   Code 200: Die eingerichtete Schoolboost-Verbindung
+	 *     - Mime-Type: application/json
+	 *     - Rückgabe-Typ: SchoolboostConnection
+	 *   Code 400: Der Pairing-Code ist ungültig oder abgelaufen.
+	 *   Code 403: Der SVWS-Benutzer hat keine Rechte, um die Schoolboost-Verbindung zu verwalten.
+	 *   Code 502: Der Schoolboost-Server ist nicht erreichbar.
+	 *
+	 * @param {SchoolboostPairRequest} data - der Request-Body für die HTTP-Methode
+	 * @param {string} schema - der Pfad-Parameter schema
+	 *
+	 * @returns Die eingerichtete Schoolboost-Verbindung
+	 */
+	public async pairSchoolboostConnection(data : SchoolboostPairRequest, schema : string) : Promise<SchoolboostConnection> {
+		const path = "/db/{schema}/schoolboost/connection/pair"
+			.replace(/{schema\s*(:[^{}]+({[^{}]+})*)?}/g, schema);
+		const body : string = SchoolboostPairRequest.transpilerToJSON(data);
+		const result : string = await super.postJSON(path, body);
+		const text = result;
+		return SchoolboostConnection.transpilerFromJSON(text);
+	}
+
+
+	/**
+	 * Implementierung der POST-Methode pushSchoolboostDaten für den Zugriff auf die URL https://{hostname}/db/{schema}/schoolboost/connection/push
+	 *
+	 * Aggregiert die Schuldaten (Schüler, Klassen, Lehrkräfte) gemäß den Synchronisations-Optionen der Verbindung und überträgt diese an den Schoolboost-Server. Es wird geprüft, ob der SVWS-Benutzer die notwendige Berechtigung zum Verwalten der Schoolboost-Verbindung besitzt.
+	 *
+	 * Mögliche HTTP-Antworten:
+	 *   Code 200: Das Ergebnis der Synchronisation
+	 *     - Mime-Type: application/json
+	 *     - Rückgabe-Typ: SimpleOperationResponse
+	 *   Code 403: Der SVWS-Benutzer hat keine Rechte, um die Schoolboost-Verbindung zu verwalten.
+	 *   Code 404: Es wurde noch keine Schoolboost-Verbindung eingerichtet.
+	 *   Code 502: Der Schoolboost-Server ist nicht erreichbar oder hat die Daten abgelehnt.
+	 *
+	 * @param {string} schema - der Pfad-Parameter schema
+	 *
+	 * @returns Das Ergebnis der Synchronisation
+	 */
+	public async pushSchoolboostDaten(schema : string) : Promise<SimpleOperationResponse> {
+		const path = "/db/{schema}/schoolboost/connection/push"
+			.replace(/{schema\s*(:[^{}]+({[^{}]+})*)?}/g, schema);
+		const result : string = await super.postJSON(path, null);
+		const text = result;
+		return SimpleOperationResponse.transpilerFromJSON(text);
 	}
 
 

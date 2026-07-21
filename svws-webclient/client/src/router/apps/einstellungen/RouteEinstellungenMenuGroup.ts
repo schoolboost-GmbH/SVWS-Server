@@ -1,4 +1,5 @@
 export enum RouteEinstellungenMenuGroup {
 	ALLGEMEIN = "Allgemein",
-	BENUTZERVERWALTUNG = "Benutzerverwaltung"
+	BENUTZERVERWALTUNG = "Benutzerverwaltung",
+	VERBINDUNGEN = "Verbindungen"
 }

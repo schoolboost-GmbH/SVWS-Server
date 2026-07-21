@@ -739,6 +739,13 @@ export { SchildReportingDatenquelleAttribut } from './core/data/schild3/reportin
 export { SchildReportingSchuelerLeistungsdaten } from './core/data/schild3/reporting/SchildReportingSchuelerLeistungsdaten';
 export { SchildReportingSchuelerLernabschnitt } from './core/data/schild3/reporting/SchildReportingSchuelerLernabschnitt';
 export { SchildReportingSchuelerSprachpruefungen } from './core/data/schild3/reporting/SchildReportingSchuelerSprachpruefungen';
+export { SchoolboostConnection } from './core/data/schoolboost/SchoolboostConnection';
+export { SchoolboostDaten } from './core/data/schoolboost/SchoolboostDaten';
+export { SchoolboostKlasse } from './core/data/schoolboost/SchoolboostKlasse';
+export { SchoolboostLehrer } from './core/data/schoolboost/SchoolboostLehrer';
+export { SchoolboostMeta } from './core/data/schoolboost/SchoolboostMeta';
+export { SchoolboostPairRequest } from './core/data/schoolboost/SchoolboostPairRequest';
+export { SchoolboostSchueler } from './core/data/schoolboost/SchoolboostSchueler';
 export { SchuelerEinwilligung } from './core/data/schueler/SchuelerEinwilligung';
 export { SchuelerKAoADaten } from './core/data/schueler/SchuelerKAoADaten';
 export { SchuelerLernabschnittListeEintrag } from './core/data/schueler/SchuelerLernabschnittListeEintrag';
