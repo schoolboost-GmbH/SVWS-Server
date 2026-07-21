@@ -203,6 +203,7 @@ import de.svws_nrw.db.dto.current.schild.stundenplan.DTOStundenplanUnterrichtLeh
 import de.svws_nrw.db.dto.current.schild.stundenplan.DTOStundenplanUnterrichtRaum;
 import de.svws_nrw.db.dto.current.schild.stundenplan.DTOStundenplanUnterrichtSchiene;
 import de.svws_nrw.db.dto.current.schild.stundenplan.DTOStundenplanZeitraster;
+import de.svws_nrw.db.dto.current.schoolboost.DTOSchoolboostVerbindungen;
 import de.svws_nrw.db.dto.current.schueler.DTOSchuelerStatus;
 import de.svws_nrw.db.dto.current.schulbewerbung.DTOSchulbewerbungImporte;
 import de.svws_nrw.db.dto.current.schule.DTOHerkunftKeys;
@@ -503,6 +504,7 @@ public final class DTOs {
              mapDTOName2DTOClass.put(DTOStundenplanUnterrichtRaum.class.getSimpleName(), DTOStundenplanUnterrichtRaum.class);
              mapDTOName2DTOClass.put(DTOStundenplanUnterrichtSchiene.class.getSimpleName(), DTOStundenplanUnterrichtSchiene.class);
              mapDTOName2DTOClass.put(DTOStundenplanZeitraster.class.getSimpleName(), DTOStundenplanZeitraster.class);
+             mapDTOName2DTOClass.put(DTOSchoolboostVerbindungen.class.getSimpleName(), DTOSchoolboostVerbindungen.class);
              mapDTOName2DTOClass.put(DTOSchuelerStatus.class.getSimpleName(), DTOSchuelerStatus.class);
              mapDTOName2DTOClass.put(DTOSchulbewerbungImporte.class.getSimpleName(), DTOSchulbewerbungImporte.class);
              mapDTOName2DTOClass.put(DTOHerkunftKeys.class.getSimpleName(), DTOHerkunftKeys.class);
@@ -798,6 +800,7 @@ public final class DTOs {
              mapTablename2DTOClass.put("Stundenplan_UnterrichtRaum", DTOStundenplanUnterrichtRaum.class);
              mapTablename2DTOClass.put("Stundenplan_UnterrichtSchiene", DTOStundenplanUnterrichtSchiene.class);
              mapTablename2DTOClass.put("Stundenplan_Zeitraster", DTOStundenplanZeitraster.class);
+             mapTablename2DTOClass.put("Schoolboost_Verbindungen", DTOSchoolboostVerbindungen.class);
              mapTablename2DTOClass.put("SchuelerStatus_Keys", DTOSchuelerStatus.class);
              mapTablename2DTOClass.put("Schulbewerbung_Importe", DTOSchulbewerbungImporte.class);
              mapTablename2DTOClass.put("Herkunft_Keys", DTOHerkunftKeys.class);

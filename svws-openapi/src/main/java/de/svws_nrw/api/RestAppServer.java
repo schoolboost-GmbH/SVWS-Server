@@ -19,6 +19,7 @@ import de.svws_nrw.api.server.APIConfig;
 import de.svws_nrw.api.server.APIDatabase;
 import de.svws_nrw.api.server.APIDatenaustausch;
 import de.svws_nrw.api.server.APIENM;
+import de.svws_nrw.api.server.APISchoolboost;
 import de.svws_nrw.api.server.APIEmail;
 import de.svws_nrw.api.server.APIErzieher;
 import de.svws_nrw.api.server.APIFaecher;
@@ -85,6 +86,7 @@ public final class RestAppServer extends Application {
 			APISchild.class,
 			APIKAOA.class,
 			APIENM.class,
+			APISchoolboost.class,
 			APIEmail.class,
 			APIGostKlausuren.class,
 			APIOAuth.class,

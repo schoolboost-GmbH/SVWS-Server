@@ -62,6 +62,7 @@ import { routeOrte } from "~/router/apps/schule/kataloge/orte/RouteOrte";
 import { routeOrtsteile } from "~/router/apps/schule/kataloge/ortsteile/RouteOrtsteile";
 import { routeBetriebsarten } from "./schule/kataloge/betriebsarten/RouteBetriebsarten";
 import { routeEmailServer } from "~/router/apps/einstellungen/emailserver/RouteEmailServer";
+import { routeVerbindungen } from "~/router/apps/einstellungen/verbindungen/RouteVerbindungen";
 import { routeSchwerpunkte } from "~/router/apps/schule/kataloge/schwerpunkte/RouteSchwerpunkte";
 import { routeAnkreuzkompetenzen } from "~/router/apps/schule/kataloge/ankreuzkompetenzen/RouteAnkreuzkompetenzen";
 import { routeTeilleistungsarten } from "~/router/apps/schule/kataloge/teilleistungsarten/RouteTeilleistungsarten";
@@ -176,6 +177,7 @@ export class RouteApp extends RouteNode<RouteDataApp, any> {
 			routeEmailServer,
 			routeEinstellungenBenutzer,
 			routeEinstellungenBenutzergruppe,
+			routeVerbindungen,
 		];
 		this._menuSchule = [
 			// Stammdaten

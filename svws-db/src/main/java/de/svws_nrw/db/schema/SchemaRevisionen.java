@@ -307,21 +307,24 @@ public enum SchemaRevisionen {
 	REV_59(59, "2026-03-26"),
 
 	/** Erweiterung an den Tabellen zu den Notenmodul-Credentials */
-	REV_60(60, "2026-04-01");
+	REV_60(60, "2026-04-01"),
+
+	/** Neue Tabelle Schoolboost_Verbindungen für die Verbindungsinformationen zu einem Schoolboost-Server */
+	REV_61(61, "2026-07-16");
 
 	/**
 	 * Gibt die größte Revisionsnummer an, die in dieser Enumeration definiert wurde und
 	 * bis zu welcher alle Schema-Revision als stabil gelten und ab Version 1.0 des SVWS-Servers
 	 * nicht mehr verändert werden.
 	 */
-	public static final SchemaRevisionen maxRevision = REV_60;
+	public static final SchemaRevisionen maxRevision = REV_61;
 
 	/**
 	 * Gibt die größte Revisions-Nummer an, welche in diese Enumeration definiert wurde.
 	 * Dies dient dazu Revisionen als Entwickler-Revisionen zu kennzeichnen, die noch nicht
 	 * stabil sind. Dieser Wert ist also größer oder gleich {@link SchemaRevisionen#maxRevision}.
 	 */
-	public static final SchemaRevisionen maxDeveloperRevision = REV_60;
+	public static final SchemaRevisionen maxDeveloperRevision = REV_61;
 
 
 	/** Eine Map, welche von der Revisionsnummer auf das Objekt der Aufzählung abbildet. */
